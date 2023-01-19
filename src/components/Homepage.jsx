@@ -10,11 +10,12 @@ import { Cryptocurrencies, News } from "../components/exports";
 const { Title } = Typography;
 
 const Homepage = () => {
-  const { data, isFetching } = useGetCryptosQuery();
+  const { data, isFetching } = useGetCryptosQuery(10);
 
   const globalStats = data?.data?.stats;
 
   if (isFetching) return "Loading...";
+  if (data===undefined) return (<h1> SITE UNDER MAINTANANCE</h1>)
 
   return (
     <>
