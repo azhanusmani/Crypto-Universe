@@ -15,7 +15,7 @@ const Homepage = () => {
   const globalStats = data?.data?.stats;
 
   if (isFetching) return "Loading...";
-  if (data===undefined) return (<h1> SITE UNDER MAINTANANCE</h1>)
+  if (data===undefined) return (<h1> Site Under Maintanance</h1>)
 
   return (
     <>
