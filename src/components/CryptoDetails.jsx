@@ -20,11 +20,10 @@ import Loader from "./Loader";
 
 const { Title, Text } = Typography;
 
-
 const CryptoDetails = () => {
   const { coinId } = useParams();
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
-
+console.log(coinId)
   const cryptoDetails = data?.data?.coin;
 
   if (isFetching) return <Loader />;
@@ -122,10 +121,12 @@ const CryptoDetails = () => {
           {stats.map(({ icon, title, value }) => (
             <Col className="coin-stats">
               <Col className="coin-stats-name">
-                <Text>{icon}</Text>
-                <Text>{title}</Text>
+                <Text key={icon}>{icon}</Text>
+                <Text key={title}>{title}</Text>
               </Col>
-              <Text className="stats">{value}</Text>
+              <Text key={value} className="stats">
+                {value}
+              </Text>
             </Col>
           ))}
         </Col>
@@ -163,10 +164,15 @@ const CryptoDetails = () => {
           </Title>
           {cryptoDetails.links?.map((link) => (
             <Row className="coin-link" key={link.name}>
-              <Title level={5} className="link-name">
+              <Title  level={5} className="link-name">
                 {link.type}
               </Title>
-              <a href={link.url} target="_blank" rel="noreferrer">
+              <a
+                href={link.url}
+                key={link.url}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {link.name}
               </a>
             </Row>
